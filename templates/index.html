@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDI to Audio Converter</title>
+    <style>
+        #loading {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 9999;
+            text-align: center;
+        }
+
+        #loading img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <h1>MIDI to Audio Converter</h1>
+    <form id="convertForm" action="/" method="post" enctype="multipart/form-data">
+        <label for="midi_file">Upload MIDI file:</label>
+        <input type="file" id="midi_file" name="midi_file" accept=".mid" required><br><br>
+        <label for="format">Choose output format:</label>
+        <input type="radio" id="mp3" name="format" value="mp3" required>
+        <label for="mp3">MP3</label>
+        <input type="radio" id="wav" name="format" value="wav" required>
+        <label for="wav">WAV</label><br><br>
+        <button type="submit">Convert</button>
+    </form>
+
+    <div id="loading">
+        <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading">
+    </div>
+
+    <script>
+        document.getElementById('convertForm').onsubmit = function() {
+            document.getElementById('loading').style.display = 'block';
+        };
+
+        document.addEventListener("visibilitychange", function() {
+            if (document.visibilityState === 'hidden') {
+                document.getElementById('loading').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
