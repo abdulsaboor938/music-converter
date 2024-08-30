@@ -1,0 +1,9 @@
+tasks:
+  - name: Setup
+    before: |
+      sudo apt-get update
+      sudo apt-get install fluidsynth -y
+      sudo apt-get install ffmpeg -y
+    command: |
+      pip install -r requirements.txt
+      python3 app.py
